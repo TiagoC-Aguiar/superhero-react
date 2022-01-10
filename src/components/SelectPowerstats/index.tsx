@@ -13,7 +13,7 @@ const SelectPowerstats = ({ options, filterBy }: Props) => {
 
   return (
     <select style={{ marginLeft: 16, height: 36 }} onChange={handleFilter}>
-      <option value="">Select by Powerstats</option>
+      <option value="#">Select by Powerstats</option>
       {options.map((value) => {
         return <option key={value} value={value}>{value}</option>;
       })}

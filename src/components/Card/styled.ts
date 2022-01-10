@@ -7,6 +7,7 @@ export const Container = styled.div`
   border-radius: 4px;
   float: left;
   margin: 2%;
+  text-decoration: none;
 `;
 
 

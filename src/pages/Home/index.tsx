@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as api from '../../api/apiService';
 import Card from '../../components/Card';
 import SelectPowerstats from '../../components/SelectPowerstats';
 import { Container, Content, InputField } from './styled';
 
-function App() {
-  const [heroName, setHeroName] = useState('');
+function Home() {
+const [heroName, setHeroName] = useState('');
   const [results, setResults] = useState<any>([]);
   const [powerStats, setPowerStats] = useState<any>([]);
   const [filterBy, setFilterBy] = useState('');
@@ -13,8 +13,7 @@ function App() {
   const set = new Set();
 
   useEffect(() => {
-    setResults(JSON.parse(localStorage.getItem(heroName)!));
-    if (filterBy) {
+    if (filterBy && filterBy.length > 1) {
       const newResult = [];
       for (const res of JSON.parse(localStorage.getItem(heroName)!)) {
         if (res.powerstats[filterBy] >= 0) {
@@ -22,6 +21,9 @@ function App() {
         }
       }
       setResults(newResult);
+    }
+    if (filterBy === '#') {
+      setResults(JSON.parse(localStorage.getItem(heroName)!));
     }
   }, [filterBy]);
 
@@ -42,7 +44,7 @@ function App() {
         data = await api.getCharacter(heroName);
       } else {
         data = JSON.parse(localStorage.getItem(heroName)!);
-      }
+      } 
       setResults(data);
       localStorage.setItem(heroName, JSON.stringify(data));
       data.forEach((stats: any) => {
@@ -58,18 +60,15 @@ function App() {
     }
   };
 
-  // const handleFilter = useCallback(() => {
-
-  // }, [filterBy]);
-
   const renderResult = () => {
     return results.map((value: any) => {
       return (
         <Card
           key={value.id}
-          name={value.id + value.name}
+          name={value.name}
           image={value.image.url}
           fullName={value.biography['full-name']}
+          id={value.id}
         />
       );
     });
@@ -109,7 +108,7 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
 
 const styles = {
   list: {
