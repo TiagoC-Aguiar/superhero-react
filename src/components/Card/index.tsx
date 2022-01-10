@@ -6,10 +6,9 @@ type Props = {
   image: string;
   fullName: string;
   id?: number;
-  searchName?: string;
 };
 
-const Card = ({ name, image, fullName, id, searchName }: Props) => {
+const Card = ({ name, image, fullName, id }: Props) => {
   const navigate = useNavigate();
 
   return (
