@@ -32,7 +32,22 @@ const HeroPage = () => {
                 return <Powerstats powerstats={value} />;
               })}
             </li>
-            <li><strong>Full Name: </strong>{hero.biography['full-name']}</li>
+            <li>
+              <strong>Full Name: </strong>
+              {hero.biography['full-name']}
+            </li>
+            <li>
+              <strong>Alter Egos: </strong>
+              {hero.biography['alter-egos']}
+            </li>
+            <li>
+              <strong>Place of Birth: </strong>
+              {hero.biography['place-of-birth']}
+            </li>
+            <li>
+              <strong>First Appearance: </strong>
+              {hero.biography['first-appearance']}
+            </li>
           </ul>
         </div>
       </div>
@@ -44,22 +59,18 @@ export default HeroPage;
 
 const styles = {
   container: {
-    border: '1px solid black',
     display: 'flex',
     justifyContent: 'center',
   },
   content: {
-    border: '1px solid red',
     display: 'flex',
     justifyContent: 'space-around',
     width: '80%',
   },
   profile: {
-    border: '1px solid green',
     padding: 10,
   },
   informations: {
-    border: '1px solid green',
     padding: 10,
   },
 };

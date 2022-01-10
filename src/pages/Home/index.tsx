@@ -84,7 +84,7 @@ function Home() {
     <Container>
       <Content>
         <h1>Super Heroes</h1>
-        <form onSubmit={handleSubmit} style={{ border: '1px solid green' }}>
+        <form onSubmit={handleSubmit}>
           <InputField>
             <input
               type="text"
@@ -122,6 +122,5 @@ const styles = {
     width: '100%',
     diplay: 'flex',
     justifyContent: 'center',
-    border: '1px solid black',
   },
 };
