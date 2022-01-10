@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container } from './styled';
 
 type Props = {
@@ -6,9 +6,10 @@ type Props = {
   image: string;
   fullName: string;
   id?: number;
+  searchName?: string;
 };
 
-const Card = ({ name, image, fullName, id }: Props) => {
+const Card = ({ name, image, fullName, id, searchName }: Props) => {
   const navigate = useNavigate();
 
   return (

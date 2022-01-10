@@ -1,7 +1,12 @@
 import Routes from './routes';
+import { SearchProvider } from './contexts';
 
 function App() {
-  return <Routes />;
+  return (
+    <SearchProvider>
+      <Routes />;
+    </SearchProvider>
+  );
 }
 
 export default App;

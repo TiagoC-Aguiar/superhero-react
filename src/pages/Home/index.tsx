@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
+
 import * as api from '../../api/apiService';
 import Card from '../../components/Card';
 import SelectPowerstats from '../../components/SelectPowerstats';
+import { useSearch } from '../../contexts';
+
 import { Container, Content, InputField } from './styled';
 
 function Home() {
-const [heroName, setHeroName] = useState('');
+  const [heroName, setHeroName] = useState('');
   const [results, setResults] = useState<any>([]);
   const [powerStats, setPowerStats] = useState<any>([]);
   const [filterBy, setFilterBy] = useState('');
+
+  const { setHeroName: globalHeroName } = useSearch();
 
   const set = new Set();
 
@@ -44,7 +49,7 @@ const [heroName, setHeroName] = useState('');
         data = await api.getCharacter(heroName);
       } else {
         data = JSON.parse(localStorage.getItem(heroName)!);
-      } 
+      }
       setResults(data);
       localStorage.setItem(heroName, JSON.stringify(data));
       data.forEach((stats: any) => {
@@ -55,6 +60,7 @@ const [heroName, setHeroName] = useState('');
       set.forEach((value) => {
         setPowerStats((previous: any) => [...previous, value]);
       });
+      globalHeroName(heroName);
     } catch (error) {
       console.warn('ERRO AO BUSCAR HEROI: ', error);
     }
