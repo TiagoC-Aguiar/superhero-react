@@ -1,30 +1,39 @@
 import { useEffect, useState } from 'react';
-import { useSearch } from '../../contexts';
+import { useHero, useSearch } from '../../contexts';
+import Powerstats from './Powerstats';
 
 const HeroPage = () => {
-  const [heroData, setHeroData] = useState<any>({});
-  const { heroName } = useSearch();
+  const [powerstats, setPowerstats] = useState<Array<string>>([]);
+
+  const { hero } = useHero();
 
   useEffect(() => {
-    const heroStr = localStorage.getItem(heroName)!;
-    const data = JSON.parse(heroStr);
-    const pathName = document.location.pathname;
-    const path = pathName.split('/');
-    const id = path[path.length - 1];
-
-    const hero = data.filter((value: any) => value.id === id)[0];
-    setHeroData(hero);
+    for (const [key, value] of Object.entries(hero.powerstats)) {
+      const save = `${key}: ${value}`;
+      if (Number(value)) {
+        setPowerstats((previous) => [...previous, save]);
+      }
+    }
   }, []);
 
   return (
     <div style={styles.container}>
       <div style={styles.content}>
         <div style={styles.profile}>
-          <h1>{heroData.name}</h1>
-          {/* <img src={heroData.image.url} alt={heroData.name} /> */}
+          <h1>{hero.name}</h1>
+          <img src={hero.image.url} alt={hero.name} />
         </div>
         <div style={styles.informations}>
           <h2>Informations</h2>
+          <ul>
+            <li>
+              <strong>Powerstats: </strong>
+              {powerstats.map((value) => {
+                return <Powerstats powerstats={value} />;
+              })}
+            </li>
+            <li><strong>Full Name: </strong>{hero.biography['full-name']}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -52,5 +61,5 @@ const styles = {
   informations: {
     border: '1px solid green',
     padding: 10,
-  }
+  },
 };

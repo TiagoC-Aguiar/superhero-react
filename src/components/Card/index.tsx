@@ -1,18 +1,25 @@
 import { useNavigate } from 'react-router-dom';
+import { useHero } from '../../contexts';
 import { Container } from './styled';
 
 type Props = {
   name: string;
   image: string;
   fullName: string;
-  id?: number;
+  id: number;
 };
 
 const Card = ({ name, image, fullName, id }: Props) => {
   const navigate = useNavigate();
+  const { getHero } = useHero();
 
   return (
-    <Container onClick={() => navigate(`/hero/${id}`)}>
+    <Container
+      onClick={() => {
+        getHero(id);
+        navigate(`/hero/${id}`);
+      }}
+    >
       <h2>{name}</h2>
       <img src={image} alt={name} width={256} height={342} />
       <p>Full Name: {fullName}</p>
