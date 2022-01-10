@@ -1,10 +1,12 @@
 import Routes from './routes';
-import { SearchProvider } from './contexts';
+import { SearchProvider, HeroProvider } from './contexts';
 
 function App() {
   return (
     <SearchProvider>
-      <Routes />;
+      <HeroProvider>
+        <Routes />
+      </HeroProvider>
     </SearchProvider>
   );
 }
