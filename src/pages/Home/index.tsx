@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import * as api from '../../api/apiService';
-import Card from '../../components/Card';
-import SelectPowerstats from '../../components/SelectPowerstats';
+import { Card, SelectPowerstats } from '../../components';
 import { useSearch } from '../../contexts';
 
 import { Container, Content, InputField } from './styled';
