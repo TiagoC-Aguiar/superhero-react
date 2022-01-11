@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useHero, useSearch } from '../../contexts';
+
+import Image from '../../components/Image';
+import { useHero } from '../../contexts';
 import Powerstats from './Powerstats';
 
 const HeroPage = () => {
@@ -22,7 +24,7 @@ const HeroPage = () => {
       <div style={styles.content}>
         <div style={styles.profile}>
           <h1>{hero.name}</h1>
-          <img src={hero.image.url} alt={hero.name} />
+          <Image src={hero.image.url} alt={hero.name} />
         </div>
         <div style={styles.informations}>
           <h2>Informations</h2>

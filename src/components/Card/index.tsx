@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+
+import Image from '../Image';
 import { useHero } from '../../contexts';
 import { Container } from './styled';
 
@@ -20,10 +22,10 @@ const Card = ({ name, image, fullName, id }: Props) => {
         navigate(`/hero/${id}`);
       }}
     >
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h2>{name}</h2>
       </div>
-      <img src={image} alt={name} width={282} height={376} />
+      <Image src={image} alt={name} width={282} height={376} />
       <p>Full Name: {fullName}</p>
     </Container>
   );
