@@ -6,11 +6,24 @@ import SelectPowerstats from '../../components/SelectPowerstats';
 import { useSearch } from '../../contexts';
 
 import { Container, Content, InputField } from './styled';
+import { SuperheroType } from '../../types';
+
+type TargetValueType = {
+  value: string;
+};
+
+type SubmitType = {
+  preventDefault: () => void;
+};
+
+type EventTargetType = {
+  target: TargetValueType;
+};
 
 function Home() {
   const [heroName, setHeroName] = useState('');
-  const [results, setResults] = useState<any>([]);
-  const [powerStats, setPowerStats] = useState<any>([]);
+  const [results, setResults] = useState<Array<SuperheroType>>([]);
+  const [powerStats, setPowerStats] = useState<Array<string>>([]);
   const [filterBy, setFilterBy] = useState('');
 
   const { setHeroName: globalHeroName } = useSearch();
@@ -32,11 +45,11 @@ function Home() {
     }
   }, [filterBy]);
 
-  const handleHeroName = (event: any) => {
-    setHeroName(event.target.value);
+  const handleHeroName = ({ target }: EventTargetType) => {
+    setHeroName(target.value);
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: SubmitType) => {
     event.preventDefault();
     if (!heroName) {
       return;
@@ -44,19 +57,8 @@ function Home() {
     try {
       set.clear();
       setPowerStats([]);
-      let data;
-      if (!localStorage.getItem(heroName)) {
-        data = await api.getCharacter(heroName);
-      } else {
-        data = JSON.parse(localStorage.getItem(heroName)!);
-      }
-      setResults(data);
-      localStorage.setItem(heroName, JSON.stringify(data));
-      data.forEach((stats: any) => {
-        for (const power of Object.keys(stats.powerstats)) {
-          set.add(power);
-        }
-      });
+      const data = await getSuperheroList();
+      setStorage(data);
       set.forEach((value) => {
         setPowerStats((previous: any) => [...previous, value]);
       });
@@ -64,6 +66,26 @@ function Home() {
     } catch (error) {
       console.warn('ERRO AO BUSCAR HEROI: ', error);
     }
+  };
+
+  const setStorage = (data: Array<SuperheroType>) => {
+    setResults(data);
+    localStorage.setItem(heroName, JSON.stringify(data));
+    data.forEach((stats: SuperheroType) => {
+      for (const power of Object.keys(stats.powerstats)) {
+        set.add(power);
+      }
+    });
+  };
+
+  const getSuperheroList = async () => {
+    let data;
+    if (!localStorage.getItem(heroName)) {
+      data = await api.getCharacter(heroName);
+    } else {
+      data = JSON.parse(localStorage.getItem(heroName)!);
+    }
+    return data;
   };
 
   const renderResult = () => {
