@@ -24,6 +24,7 @@ function Home() {
   const [results, setResults] = useState<Array<SuperheroType>>([]);
   const [powerStats, setPowerStats] = useState<Array<string>>([]);
   const [filterBy, setFilterBy] = useState('');
+  const [isNotFound, setIsNotFound] = useState(false);
 
   const { setHeroName: globalHeroName } = useSearch();
 
@@ -57,7 +58,10 @@ function Home() {
       set.clear();
       setPowerStats([]);
       const data = await getSuperheroList();
-      setStorage(data);
+      setResults(data);
+      if(data.length !== 0) {
+        setStorage(data);
+      }
       set.forEach((value) => {
         setPowerStats((previous: any) => [...previous, value]);
       });
@@ -67,8 +71,7 @@ function Home() {
     }
   };
 
-  const setStorage = (data: Array<SuperheroType>) => {
-    setResults(data);
+  const setStorage = (data: Array<SuperheroType>) => { 
     localStorage.setItem(heroName, JSON.stringify(data));
     data.forEach((stats: SuperheroType) => {
       for (const power of Object.keys(stats.powerstats)) {
@@ -78,6 +81,7 @@ function Home() {
   };
 
   const getSuperheroList = async () => {
+    setIsNotFound(false);
     let data;
     try {
       if (!localStorage.getItem(heroName)) {
@@ -87,6 +91,7 @@ function Home() {
       }
     } catch (error) {
       console.warn('Hero not found');
+      setIsNotFound(true);
       data = [];
     }
     return data;
@@ -109,6 +114,7 @@ function Home() {
           {results.length > 0 && (
             <SelectPowerstats filterBy={setFilterBy} options={powerStats} />
           )}
+          {isNotFound && <h3>Hero not found!!!</h3>}
         </form>
         <HeroList results={results} />
       </Content>
