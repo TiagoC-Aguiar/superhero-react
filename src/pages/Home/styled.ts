@@ -33,9 +33,14 @@ export const Content = styled.div`
       border-radius: 2px;
       padding: 0 16px;
       margin: 16px 0;
-      box-shadow: 2px 2px 2px rgba(0,0,0,.14);
+      box-shadow: 2px 2px 2px rgba(0,0,0,.28);
       box-sizing: inherit;
       border: none;
+  }
+
+  .heroList {
+    margin: auto;
+    width: 100%;
   }
 `;
 
@@ -48,7 +53,7 @@ export const InputField = styled.div`
     width: 100%;
     height: 3rem;
     margin: 0 0 8px 0;
-    font-size: 16px;
+    font-size: 18px;
     padding: 0;
     box-sizing: content-box;
     outline: none;
@@ -56,7 +61,7 @@ export const InputField = styled.div`
   }
 
   input:focus {
-    border-bottom: 1px solid #189;
+    border-bottom: 2px solid #189;
     box-shadow: 0 1px 0 0 #189;
   }
 `;

@@ -20,8 +20,10 @@ const Card = ({ name, image, fullName, id }: Props) => {
         navigate(`/hero/${id}`);
       }}
     >
-      <h2>{name}</h2>
-      <img src={image} alt={name} width={256} height={342} />
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <h2>{name}</h2>
+      </div>
+      <img src={image} alt={name} width={282} height={376} />
       <p>Full Name: {fullName}</p>
     </Container>
   );

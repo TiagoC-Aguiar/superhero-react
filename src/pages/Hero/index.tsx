@@ -65,6 +65,10 @@ const HeroPage = () => {
               <strong>Race: </strong>
               {hero.appearance['race']}
             </li>
+            <li>
+              <strong>Occupation: </strong>
+              {hero.work['occupation']}
+            </li>
           </ul>
         </div>
       </div>
@@ -78,6 +82,7 @@ const styles = {
   container: {
     display: 'flex',
     justifyContent: 'center',
+    marginTop: 20,
   },
   content: {
     display: 'flex',
@@ -86,8 +91,12 @@ const styles = {
   },
   profile: {
     padding: 10,
+    border: '1px solid #999',
+    margin: 10,
   },
   informations: {
     padding: 10,
+    border: '1px solid #999',
+    margin: 10,
   },
 };

@@ -98,7 +98,7 @@ function Home() {
             <SelectPowerstats filterBy={setFilterBy} options={powerStats} />
           )}
         </form>
-        <div className="heroList" style={styles.list}>
+        <div className="heroList">
           <div
             style={{
               display: 'flex',
@@ -115,12 +115,3 @@ function Home() {
 }
 
 export default Home;
-
-const styles = {
-  list: {
-    margin: 'auto',
-    width: '100%',
-    diplay: 'flex',
-    justifyContent: 'center',
-  },
-};
