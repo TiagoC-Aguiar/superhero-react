@@ -1,3 +1,10 @@
 export type HeroCard = {
-  name: string; 
-}
+  name: string;
+};
+
+export type ImageType = {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+};

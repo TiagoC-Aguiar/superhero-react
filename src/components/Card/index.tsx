@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import Image from '../Image';
+import { Profile } from '../../components';
 import { useHero } from '../../contexts';
 import { Container } from './styled';
 
@@ -15,6 +15,8 @@ const Card = ({ name, image, fullName, id }: Props) => {
   const navigate = useNavigate();
   const { getHero } = useHero();
 
+  const imageData = { src: image, alt: name, width: 282, height: 376 };
+
   return (
     <Container
       onClick={() => {
@@ -22,10 +24,10 @@ const Card = ({ name, image, fullName, id }: Props) => {
         navigate(`/hero/${id}`);
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Profile imageData={imageData}>
         <h2>{name}</h2>
-      </div>
-      <Image src={image} alt={name} width={282} height={376} />
+      </Profile>
+
       <p>Full Name: {fullName}</p>
     </Container>
   );

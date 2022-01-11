@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import Image from '../../components/Image';
+import { Profile } from '../../components';
 import { useHero } from '../../contexts';
 import Powerstats from './Powerstats';
 
 const HeroPage = () => {
   const [powerstats, setPowerstats] = useState<Array<string>>([]);
-
   const { hero } = useHero();
+
+  const imageData = { src: hero.image.url, alt: hero.name };
 
   useEffect(() => {
     setPowerstats([]);
@@ -23,8 +24,9 @@ const HeroPage = () => {
     <div style={styles.container}>
       <div style={styles.content}>
         <div style={styles.profile}>
-          <h1>{hero.name}</h1>
-          <Image src={hero.image.url} alt={hero.name} />
+          <Profile imageData={imageData}>
+            <h1>{hero.name.toUpperCase()}</h1>
+          </Profile>
         </div>
         <div style={styles.informations}>
           <h2>Informations</h2>
