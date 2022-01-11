@@ -4,6 +4,8 @@ import { Profile } from '../../components';
 import { useHero } from '../../contexts';
 import Powerstats from './Powerstats';
 
+import { Container, Content } from './styled';
+
 const HeroPage = () => {
   const [powerstats, setPowerstats] = useState<Array<string>>([]);
   const { hero } = useHero();
@@ -21,12 +23,12 @@ const HeroPage = () => {
   }, []);
 
   return (
-    <div style={styles.container}>
-      <div style={styles.content}>
-        <div style={styles.profile}>
+    <Container>
+      <Content>
+        <div className={'panel'}>
           <Profile imageData={imageData} name={hero.name} isUpper />
         </div>
-        <div style={styles.informations}>
+        <div className={'panel'}>
           <h2>Informations</h2>
           <ul>
             <li>
@@ -73,32 +75,9 @@ const HeroPage = () => {
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+      </Content>
+    </Container>
   );
 };
 
 export default HeroPage;
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  content: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: '80%',
-  },
-  profile: {
-    padding: 10,
-    border: '1px solid #999',
-    margin: 10,
-  },
-  informations: {
-    padding: 10,
-    border: '1px solid #999',
-    margin: 10,
-  },
-};
