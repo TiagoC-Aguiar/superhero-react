@@ -36,24 +36,23 @@ const HeroPage = () => {
   }, []);
 
   const setInformations = () => {
-    informations.push('Full Name');
-    informations.push(biography['full-name']);
-    informations.push('Alter Egos');
-    informations.push(biography['alter-egos']);
-    informations.push('Place of Birth');
-    informations.push(biography['place-of-birth']);
-    informations.push('First Appearance');
-    informations.push(biography['first-appearance']);
-    informations.push('Publisher');
-    informations.push(biography['publisher']);
-    informations.push('Alignment');
-    informations.push(biography['alignment']);
-    informations.push('Gender');
-    informations.push(appearance['gender']);
-    informations.push('Race');
-    informations.push(appearance['race']);
-    informations.push('Occupation');
-    informations.push(work['occupation']);
+    storeInformation('Full Name', biography['full-name']);
+    storeInformation('Alter Egos', biography['alter-egos']);
+    storeInformation('Place of Birth', biography['place-of-birth']);
+    storeInformation('First Appearance', biography['first-appearance']);
+    storeInformation('Publisher', biography['publisher']);
+    storeInformation('Alignment', biography['alignment']);
+    storeInformation('Gender', appearance['gender']);
+    storeInformation('Race', appearance['race']);
+    storeInformation('Occupation', work['occupation']);
+  };
+
+  const storeInformation = (
+    info: string,
+    value: string,
+  ): void => {
+    informations.push(info);
+    informations.push(value);
   };
 
   return (
