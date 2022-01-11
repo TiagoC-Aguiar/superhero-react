@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
   padding: 4%;
 `;
@@ -19,23 +18,23 @@ export const Content = styled.div`
   }
 
   form {
-      width: 86%;
+    width: 86%;
   }
 
   button {
-      cursor: pointer;
-      color: #fff;
-      background-color: #189;
-      letter-spacing: .5px;
-      font-size: 14px;
-      outline: 0;
-      height: 36px;
-      border-radius: 2px;
-      padding: 0 16px;
-      margin: 16px 0;
-      box-shadow: 2px 2px 2px rgba(0,0,0,.28);
-      box-sizing: inherit;
-      border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #189;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    outline: 0;
+    height: 36px;
+    border-radius: 2px;
+    padding: 0 16px;
+    margin: 16px 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+    box-sizing: inherit;
+    border: none;
   }
 
   .heroList {
