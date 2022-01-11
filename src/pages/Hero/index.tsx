@@ -24,9 +24,7 @@ const HeroPage = () => {
     <div style={styles.container}>
       <div style={styles.content}>
         <div style={styles.profile}>
-          <Profile imageData={imageData}>
-            <h1>{hero.name.toUpperCase()}</h1>
-          </Profile>
+          <Profile imageData={imageData} name={hero.name} isUpper />
         </div>
         <div style={styles.informations}>
           <h2>Informations</h2>

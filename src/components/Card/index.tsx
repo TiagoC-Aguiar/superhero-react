@@ -24,10 +24,7 @@ const Card = ({ name, image, fullName, id }: Props) => {
         navigate(`/hero/${id}`);
       }}
     >
-      <Profile imageData={imageData}>
-        <h2>{name}</h2>
-      </Profile>
-
+      <Profile imageData={imageData} name={name} />
       <p>Full Name: {fullName}</p>
     </Container>
   );

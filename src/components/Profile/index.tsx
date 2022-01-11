@@ -1,16 +1,27 @@
+import { useEffect, useState } from 'react';
 import { Image } from '../';
 import {ImageType} from '../../types';
 import {Container} from './styled';
 
 type Props = {
-  children: JSX.Element;
+  children?: JSX.Element;
   imageData: ImageType;
+  name: string;
+  isUpper?: boolean
 };
 
-const Profile = ({ children, imageData }: Props) => {
+const Profile = ({ children, imageData, name, isUpper }: Props) => {
+  const [heroName, setHeroName] = useState(name);
+
+  useEffect(() => {
+    if(isUpper) {
+      setHeroName(name.toUpperCase());
+    }
+  }, []);
+
   return (
     <Container>
-      {children}
+      <h2>{heroName}</h2>
       <Image 
         src={imageData.src}
         alt={imageData.alt}
