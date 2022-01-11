@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import * as api from '../../api/apiService';
-import { Card, SelectPowerstats } from '../../components';
+import { HeroList, SelectPowerstats } from '../../components';
 import { useSearch } from '../../contexts';
 
 import { Container, Content, InputField } from './styled';
@@ -79,26 +79,17 @@ function Home() {
 
   const getSuperheroList = async () => {
     let data;
-    if (!localStorage.getItem(heroName)) {
-      data = await api.getCharacter(heroName);
-    } else {
-      data = JSON.parse(localStorage.getItem(heroName)!);
+    try {
+      if (!localStorage.getItem(heroName)) {
+        data = await api.getCharacter(heroName);
+      } else {
+        data = JSON.parse(localStorage.getItem(heroName)!);
+      }
+    } catch (error) {
+      console.warn('Hero not found');
+      data = [];
     }
     return data;
-  };
-
-  const renderResult = () => {
-    return results.map((value: any) => {
-      return (
-        <Card
-          key={value.id}
-          name={value.name}
-          image={value.image.url}
-          fullName={value.biography['full-name']}
-          id={value.id}
-        />
-      );
-    });
   };
 
   return (
@@ -119,17 +110,7 @@ function Home() {
             <SelectPowerstats filterBy={setFilterBy} options={powerStats} />
           )}
         </form>
-        <div className="heroList">
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {renderResult()}
-          </div>
-        </div>
+        <HeroList results={results} />
       </Content>
     </Container>
   );
