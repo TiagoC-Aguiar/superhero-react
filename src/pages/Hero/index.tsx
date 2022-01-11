@@ -8,6 +8,7 @@ const HeroPage = () => {
   const { hero } = useHero();
 
   useEffect(() => {
+    setPowerstats([]);
     for (const [key, value] of Object.entries(hero.powerstats)) {
       const save = `${key}: ${value}`;
       if (Number(value)) {
@@ -28,8 +29,8 @@ const HeroPage = () => {
           <ul>
             <li>
               <strong>Powerstats: </strong>
-              {powerstats.map((value) => {
-                return <Powerstats powerstats={value} />;
+              {powerstats.map((value, index) => {
+                return <Powerstats key={index} powerstats={value} />;
               })}
             </li>
             <li>
@@ -47,6 +48,22 @@ const HeroPage = () => {
             <li>
               <strong>First Appearance: </strong>
               {hero.biography['first-appearance']}
+            </li>
+            <li>
+              <strong>Publisher: </strong>
+              {hero.biography['publisher']}
+            </li>
+            <li>
+              <strong>Alignment: </strong>
+              {hero.biography['alignment']}
+            </li>
+            <li>
+              <strong>Gender: </strong>
+              {hero.appearance['gender']}
+            </li>
+            <li>
+              <strong>Race: </strong>
+              {hero.appearance['race']}
             </li>
           </ul>
         </div>

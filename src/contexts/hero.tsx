@@ -16,7 +16,6 @@ export const HeroProvider: React.FC = ({ children }) => {
     const heroStr = localStorage.getItem(heroName)!;
     const data = JSON.parse(heroStr);
     const hero = data.filter((value: any) => value.id === id)[0];
-    console.log('HERO: ', hero);
     setHero(hero);
   };
 
